@@ -1,7 +1,5 @@
 var chai = require('chai'),
-    assert = chai.assert,
     should = chai.should(),
-    expect = chai.expect,
     sinon = require('sinon'),
     Vodevil = require('../lib/vodevil').core;
 
@@ -33,10 +31,16 @@ describe('Vodevil Section of Tests: ', function () {
     });    
 
     describe('Array letter ranges', function () {
-        it (' - Simple letter sequence', function () {
+        it(' - Simple letter sequence', function () {
             var output = ['a', 'b', 'c'];
 
             Vodevil.range('a..c').should.have.length( 3 );
+        });
+
+        it(' - Lower and Upper case range', function () {
+            var output = ['A', 'B', 'C'];
+
+            Vodevil.range('A..C').should.have.length( 3 );
         });
     });
 });
