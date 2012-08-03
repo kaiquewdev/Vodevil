@@ -3,7 +3,7 @@ var chai = require('chai'),
     should = chai.should(),
     expect = chai.expect,
     sinon = require('sinon'),
-    Voudevil = require('./voudevil').core;
+    Voudevil = require('../lib/voudevil').core;
 
 // Vouvdevil lib main tests
 describe('Voudevil Section of Tests: ', function () {
