@@ -43,4 +43,83 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.range('A..C').should.have.length( 3 );
         });
     });
+
+    describe('Array sequence of same value', function () {
+        it(' - Fail if receive empty value', function () {
+            Vodevil.bang().should.have.length( 0 );    
+        });    
+
+        it(' - String repetition', function () {
+            var output = ' , , ';
+
+            Vodevil.bang(' ', 3).should.have.length( 3 );    
+            Vodevil.bang(' ', 3).toString().should.equal( output );
+        });
+
+        it(' - Number repetition', function () {
+            var output = '1,1,1,1';
+
+            Vodevil.bang( 1, 4 ).should.have.length( 4 );
+            Vodevil.bang( 1, 4 ).toString().should.equal( output );
+        });
+
+        it(' - Boolean repetition', function () {
+            var output = 'true,true,true';
+
+            Vodevil.bang( true, 3 ).should.have.length( 3 );
+            Vodevil.bang( true, 3 ).toString().should.equal( output );
+        });
+
+        it(' - Undefined repetition', function () {
+            var output = [undefined, undefined, undefined].toString();
+
+            Vodevil.bang( undefined, 3 ).should.have.length( 3 );
+            Vodevil.bang( undefined, 3 ).toString().should.equal( output );
+        });
+
+        it(' - Null repetition', function () {
+            var output = [null, null, null].toString();
+
+            Vodevil.bang( null, 3 ).should.have.length( 3 );
+            Vodevil.bang( null, 3 ).toString().should.equal( output );
+        });
+    });
+
+    describe('Clean array', function () {
+        it(' - Return the same array, if not receive argument', function () {
+            Vodevil.clean().should.have.length( 0 );
+        });    
+
+        it(' - Clean the empty string [ default ]', function () {
+            var input = ['', 'hello'],
+                output = ['hello'].toString();
+
+            Vodevil.clean( input ).should.have.length( 1 );
+            Vodevil.clean( input ).toString().should.equal( output );
+        });
+
+        it(' - Clean the undefined [ default ]', function () {
+            var input = [ undefined, 'hello' ],
+                output = ['hello'].toString();
+
+            Vodevil.clean( input ).should.have.length( 1 );
+            Vodevil.clean( input ).toString().should.equal( output );
+        });
+
+        it(' - Clean the null [ default ]', function () {
+            var input = [ null, 'hello' ],
+                output = ['hello'].toString();
+
+            Vodevil.clean( input ).should.have.length( 1 );
+            Vodevil.clean( input ).toString().should.equal( output );
+        });
+
+        it(' - Clean the piece', function () {
+            var input = [ null, 'hello', 'octocat' ],
+                output = ['octocat'].toString();    
+            
+            Vodevil.clean( input, 'hello' ).should.have.length( 1 );
+            Vodevil.clean( input, 'hello' ).toString().should.equal( output );
+        });
+    });
 });
