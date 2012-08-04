@@ -7,22 +7,17 @@ var chai = require('chai'),
 describe('Vodevil Section of Tests: ', function () {
     describe('Array number ranges', function () {
         it(' - Simple number range, with string by argument', function () {
-            var output = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            var output = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].toString();
 
-            // Array aspect
-            Vodevil.range('1..10').toString().should.equal( output.toString() );
-            // Array length
+            Vodevil.range('1..10').toString().should.equal( output );
             Vodevil.range('1..10').should.have.length( 10 );
         });
 
         it(' - Simple number range, with separated arguments', function () {
-            var output = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            var output = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].toString();
 
-            // Array aspect
-            Vodevil.range(1, 10).toString().should.equal( output.toString() );
-            // Array length
+            Vodevil.range(1, 10).toString().should.equal( output );
             Vodevil.range('1..10').should.have.length( 10 );
-
         });
 
         it(' - Fail if not receive argument', function () {
@@ -32,15 +27,17 @@ describe('Vodevil Section of Tests: ', function () {
 
     describe('Array letter ranges', function () {
         it(' - Simple letter sequence', function () {
-            var output = ['a', 'b', 'c'];
+            var output = ['a', 'b', 'c'].toString();
 
             Vodevil.range('a..c').should.have.length( 3 );
+            Vodevil.range('a..c').toString().should.equal( output );
         });
 
         it(' - Lower and Upper case range', function () {
-            var output = ['A', 'B', 'C'];
+            var output = ['A', 'B', 'C'].toString();
 
             Vodevil.range('A..C').should.have.length( 3 );
+            Vodevil.range('A..C').toString().should.equal( output );
         });
     });
 
@@ -50,21 +47,21 @@ describe('Vodevil Section of Tests: ', function () {
         });    
 
         it(' - String repetition', function () {
-            var output = ' , , ';
+            var output = [' ', ' ', ' '].toString();
 
             Vodevil.bang(' ', 3).should.have.length( 3 );    
             Vodevil.bang(' ', 3).toString().should.equal( output );
         });
 
         it(' - Number repetition', function () {
-            var output = '1,1,1,1';
+            var output = [1, 1, 1, 1].toString();
 
             Vodevil.bang( 1, 4 ).should.have.length( 4 );
             Vodevil.bang( 1, 4 ).toString().should.equal( output );
         });
 
         it(' - Boolean repetition', function () {
-            var output = 'true,true,true';
+            var output = [true, true, true].toString();
 
             Vodevil.bang( true, 3 ).should.have.length( 3 );
             Vodevil.bang( true, 3 ).toString().should.equal( output );
