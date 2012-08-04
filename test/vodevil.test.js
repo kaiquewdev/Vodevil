@@ -120,5 +120,18 @@ describe('Vodevil Section of Tests: ', function () {
         });
     });
 
+    describe('Array checking type', function () {
+        it('if not is array return false', function () {
+            Vodevil.isArray().should.equal( false );    
+            Vodevil.isArray( 'hello' ).should.equal( false );    
+            Vodevil.isArray( 1 ).should.equal( false );    
+            Vodevil.isArray( (function () { return function () {}; } ())).should.equal( false );    
+        });    
 
+        it('if is array return true', function () {
+            Vodevil.isArray([]).should.equal( true );    
+            Vodevil.isArray([1, 2, 3, 4]).should.equal( true );    
+            Vodevil.isArray(['just', 'another', 'array']).should.equal( true );    
+        });
+    });
 });
