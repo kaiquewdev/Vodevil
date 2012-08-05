@@ -59,5 +59,21 @@ vodevil.isArray
 
 > vodevil.isArray([1, 2, 3]) => true
 
+vodevil.union
+-------------
+
+> vodevil.union( [1, 2, 3], [4, 5, 6] ) => [1, 2, 3, 4, 5, 6]
+
+> vodevil.union( 'ab', ['c', 'd'] ) => ['a', 'b', 'c', 'd']
+
+> vodevil.union( ['a', 'b'], 'cd' ) => ['a', 'b', 'c', 'd']
+
+vodevil.intersect
+-----------------
+
+> vodevil.intersect( [1, 2, 3, 4, 5], function ( x ) { return x*2; }) => [2, 4, 6, 8, 10]
+
+> vodevil.intersect( [1, 2, 3], function ( item, index, array ) { console.log( x ); } ) => []
+
 
 feedback kaique.developer@gmail.com
