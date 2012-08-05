@@ -152,4 +152,54 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.isArray(['just', 'another', 'array']).should.equal( true );    
         });
     });
+
+    describe('Array union', function () {
+        it('union by two arrays', function () {
+            var output = [1, 2, 3, 4, 5, 6, 7, 8].toString();
+
+            Vodevil.union( [1, 2, 3, 4], [5, 6, 7, 8] ).toString().should.equal( output );    
+        });    
+
+        it('fail if not receive arguments', function () {
+            var output = [];
+
+            Vodevil.union().should.have.length( 0 );
+        });
+
+        it('union strings', function () {
+            var output = ['a', 'b', 'c', 'd'].toString();    
+
+            Vodevil.union('ab', 'cd').toString().should.equal( output );
+        });
+
+        it('union string more array', function () {
+            var output = ['a', 'b', 'c', 'd'].toString();    
+
+            Vodevil.union( 'ab', ['c', 'd'] ).toString().should.equal( output );
+        });
+
+        it('union array more string', function () {    
+            var output = ['a', 'b', 'c', 'd'].toString();
+
+            Vodevil.union( ['a', 'b'], 'cd' ).toString().should.equal( output );
+        });
+    });
+
+    describe('Array intersect', function () {
+        it('multiplication in the intersection', function () {
+            var output = [2, 4, 6, 8, 10].toString();    
+
+            Vodevil.intersect( [1, 2, 3, 4, 5], function ( x ) { return x*2 } ).toString().should.equal( output );
+        });
+
+        it('work with arguments', function () {
+            var output = [{'0': 1, 'o': []}, {'1': 2, 'o': [1]}, {'2': 3, 'o': [2]}].toString();
+
+            Vodevil.intersect( [1, 2, 3], function ( x, i, o ) { return { i: x, 'o': o} }).toString().should.equal( output );
+        });
+
+        it('not insert undefined if not return value', function () {
+            Vodevil.intersect( [1, 2, 3], function ( x, i, o ) {}).should.have.length( 0 );    
+        });
+    });
 });
