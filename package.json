@@ -1,6 +1,6 @@
 {
     "name": "vodevil",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Help you easily deal with these arrays with the genie difficult to handle.",
     "main": "./index.js",
     "bin": {
