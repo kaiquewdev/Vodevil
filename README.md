@@ -75,5 +75,6 @@ vodevil.intersect
 
 > vodevil.intersect( [1, 2, 3], function ( item, index, array ) { console.log( x ); } ) => []
 
+-----------------------------------
 
 feedback kaique.developer@gmail.com
