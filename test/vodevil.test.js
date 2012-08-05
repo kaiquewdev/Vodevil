@@ -23,6 +23,24 @@ describe('Vodevil Section of Tests: ', function () {
         it(' - Fail if not receive argument', function () {
             Vodevil.range().should.have.length( 0 );    
         });
+
+        it(' - ( Note: using number ) If receive one argument, make array from 0 to n', function () {
+            var output = [0, 1, 2, 3, 4].toString();
+            
+            Vodevil.range(4).toString().should.equal( output );
+        });
+
+        it(' - ( Note: using string ) If receive one argument, make array from 0 to n', function () {
+            var output = [0, 1, 2, 3, 4].toString();
+            
+            Vodevil.range('..4').toString().should.equal( output );
+        });
+
+        it (' - ( Note: using string ) If receive one argument, make array from a to n', function () {
+            var output = ['a', 'b', 'c', 'd', 'e', 'f', 'g'].toString();    
+
+            Vodevil.range('..g').toString().should.equal( output );
+        });
     });    
 
     describe('Array letter ranges', function () {

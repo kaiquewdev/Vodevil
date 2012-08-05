@@ -1,0 +1,21 @@
+{
+    "name": "vodevil",
+    "version": "0.0.1",
+    "description": "Help you easily deal with these arrays with the genie difficult to handle.",
+    "main": "./index.js",
+    "bin": {
+        "vodevil": "./index.js"
+    },
+    "author": "Kaique da Silva <kaique.developer@gmail.com>",
+    "keywords": [
+        "array",
+        "manipulation"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://     github.com/kaiquewdev/Vodevil.git"
+    },
+    "engines": {
+        "node": "*"
+    }
+}
