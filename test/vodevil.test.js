@@ -201,6 +201,18 @@ describe('Vodevil Section of Tests: ', function () {
         it('not insert undefined if not return value', function () {
             Vodevil.intersect( [1, 2, 3], function ( x, i, o ) {}).should.have.length( 0 );    
         });
+
+        it('sail in intersect', function () {
+            var output = [2, 4, 6].toString();
+
+            Vodevil.intersect( [1, 2, 3, 4, 5], function ( x ) { return x*2; }, '0:2' ).toString().should.equal( output );    
+        });
+
+        it('reverse intersect', function () {
+            var output = [6, 4, 2].toString();
+
+            Vodevil.intersect( [1, 2, 3, 4, 5], function ( x ) { return x*2;}, '2::' ).toString().should.equal( output );    
+        });
     });
 
     describe('Array sail', function () {
