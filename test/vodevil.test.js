@@ -202,4 +202,58 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.intersect( [1, 2, 3], function ( x, i, o ) {}).should.have.length( 0 );    
         });
     });
+
+    describe('Array sail', function () {
+        it('from a point to end', function () {
+            var output = [3, 4, 5].toString();    
+
+            Vodevil.sail( [1, 2, 3, 4, 5], '2:' ).toString().should.equal( output );
+        });    
+
+        it('from a point to start', function () {
+            var output = [1, 2].toString();    
+
+            Vodevil.sail( [1, 2, 3, 4, 5], ':1' ).toString().should.equal( output );
+        });    
+
+        it('from two spec points', function () {
+            var output = [3, 4].toString();
+
+            Vodevil.sail( [1, 2, 3, 4, 5, 6], '2:3' ).toString().should.equal( output );
+        });
+
+        it('reverse travel', function () {
+            var output = [4, 3, 2, 1].toString();
+
+            Vodevil.sail( [1, 2, 3, 4], '0::' ).toString().should.equal( output );
+        });    
+
+        it('reverse travel by two points', function () {
+            var output = [5, 4].toString();
+
+            Vodevil.sail( [1, 2, 3, 4, 5], '0::1' ).toString().should.equal( output );
+        });
+
+        it('start to end', function () {
+            var output = [3, 2, 1].toString();    
+
+            Vodevil.sail( [1, 2, 3, 4, 5], '2::' ).toString().should.equal( output );
+        });
+    });
+
+    describe('Array multiplex', function () {
+        it('return default behavior', function () {
+            var output = [[1, 2, 3], [4, 5, 6], [7, 8, 9]].toString();    
+
+            Vodevil.multiplex( Vodevil.range('1..9') ).toString().should.equal( output );
+        });    
+    });
+
+    describe('Array flush', function () {
+        it('all deep flush', function () {
+            var output = [1, 2, 3, 4, 5, 6].toString();    
+
+            Vodevil.flush( [1, [2, [3, [4, [5, [6]]]]]] ).toString().should.equal( output );
+        });    
+    });
 });
