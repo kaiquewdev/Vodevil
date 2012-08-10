@@ -75,6 +75,24 @@ vodevil.intersect
 
 > vodevil.intersect( [1, 2, 3], function ( item, index, array ) { console.log( x ); } ) => []
 
+> vodevil.intersect( [1, 2, 3, 4, 5], function ( x ) { return x 2; }, ':2' ) => [2, 4, 6]
+
+> vodevil.intersect( [1, 2, 3, 4, 5, 6], function ( x ) { return x*2 }, '2::' ) => [6, 4, 2]
+
+vodevil.sail
+------------
+
+> vodevil.sail( [1, 2, 3, 4, 5], '2:' ) => [3, 4, 5]
+
+> vodevil.sail( [1, 2, 3, 4, 5], '2::' ) => [3, 2, 1]
+
+> vodevil.sail( [1, 2, 3, 4, 5, 6], '2:3' ) => [3, 4]
+
+vodevil.flush
+-------------
+
+> vodevil.flush( [1, [2, [3, [4, [5, [6, [7, [8, [9, [0]]]]]]]]]] ) => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+
 vodevil.in
 ----------
 
