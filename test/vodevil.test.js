@@ -1,6 +1,5 @@
 var chai = require('chai'),
     should = chai.should(),
-    sinon = require('sinon'),
     Vodevil = require('../lib/vodevil').core;
 
 // Vouvdevil lib main tests
@@ -247,6 +246,12 @@ describe('Vodevil Section of Tests: ', function () {
 
             Vodevil.multiplex( Vodevil.range('1..9') ).toString().should.equal( output );
         });    
+
+        it('return one by length gt in sequence', function () {
+            var output = JSON.stringify( [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10]] );    
+
+            JSON.stringify( Vodevil.multiplex( Vodevil.range('1..10') ) ).should.equal( output );
+        });
     });
 
     describe('Array flush', function () {
@@ -255,5 +260,37 @@ describe('Vodevil Section of Tests: ', function () {
 
             Vodevil.flush( [1, [2, [3, [4, [5, [6]]]]]] ).toString().should.equal( output );
         });    
+    });
+
+    describe('Array in', function () {
+        it('item in array', function () {
+            Vodevil.in( [1, 2, 3], 2 ).should.equal( true );
+        });    
+
+        it('item not in array', function () {
+            Vodevil.in( [1, 2, 3, 4], 5 ).should.equal( false );
+        });
+    });
+
+    describe('Array set', function () {
+        it('testing setting object', function () {
+            var output = {
+                objectId: 'e9TGO6LNrbBg9XMOe/ZqMA==',
+                object: [1, 2, 3, 4],
+                objectType: 'set',
+            };
+
+            Vodevil.set([1, 2, 3, 4]).objectId.should.equal( output.objectId );
+            Vodevil.set([1, 2, 3, 4]).objectType.should.equal( output.objectType );
+            Vodevil.set([1, 2, 3, 4]).object.should.have.length( output.object.length );
+        });   
+
+        it('equal property', function () {
+            var target = [1, 2, 3, 4],
+                a = Vodevil.set(target),
+                b = Vodevil.set(target);
+
+            a.equal(b).should.equal( true );
+        });
     });
 });
