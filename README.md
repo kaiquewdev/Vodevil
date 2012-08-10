@@ -75,6 +75,33 @@ vodevil.intersect
 
 > vodevil.intersect( [1, 2, 3], function ( item, index, array ) { console.log( x ); } ) => []
 
+vodevil.in
+----------
+
+> vodevil.in([1, 2, 3, 4], 4) => true
+
+> vodevil.in([1, 2, 3, 4], 5) => false
+
+> vodevil.in() => false
+
+vodevil.set
+-----------
+
+>> Returned object: { objectId: (hash), object: [array], objectType: 'set' }
+
+> vodevil.set([1, 2, 3]) => {"objectId": "8eRvMo5t7NVsZN1edh3Ctw==", "object": [1,2,3], "objectType": "set"} 
+
+> vodevil.set([1, 2, 3]).equal( vodevil.set([1, 2, 3]) ) => true
+
+> vodevil.set([1, 3, 4]).equal( vodevil.set([1, 2, 3]) ) => false
+
+vodevil.isSet
+-------------
+
+> vodevil.isSet([1, 2, 3]) => false
+
+> vodevil.isSet( vodevil.set([1, 2, 3]) ) => true
+
 License
 -------
 

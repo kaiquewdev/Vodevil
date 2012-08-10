@@ -240,7 +240,7 @@ describe('Vodevil Section of Tests: ', function () {
         });
     });
 
-    describe('Array multiplex', function () {
+    /*describe('Array multiplex', function () {
         it('return default behavior', function () {
             var output = [[1, 2, 3], [4, 5, 6], [7, 8, 9]].toString();    
 
@@ -252,7 +252,7 @@ describe('Vodevil Section of Tests: ', function () {
 
             JSON.stringify( Vodevil.multiplex( Vodevil.range('1..10') ) ).should.equal( output );
         });
-    });
+    });*/
 
     describe('Array flush', function () {
         it('all deep flush', function () {
@@ -262,6 +262,20 @@ describe('Vodevil Section of Tests: ', function () {
         });    
     });
 
+    describe('Array isSet', function () {
+        it('verify if type is set', function () {
+            Vodevil.isSet( Vodevil.set([1, 2, 3]) ).should.equal( true );    
+        });
+
+        it('Verify if type not is set', function () {
+            Vodevil.isSet([1, 2, 3]).should.equal( false );    
+        });
+
+        it('empty parameter return false', function () {
+            Vodevil.isSet().should.equal( false );    
+        });
+    });
+
     describe('Array in', function () {
         it('item in array', function () {
             Vodevil.in( [1, 2, 3], 2 ).should.equal( true );
@@ -269,6 +283,10 @@ describe('Vodevil Section of Tests: ', function () {
 
         it('item not in array', function () {
             Vodevil.in( [1, 2, 3, 4], 5 ).should.equal( false );
+        });
+
+        it('empty parameter return false', function () {
+            Vodevil.in().should.equal( false );    
         });
     });
 
@@ -291,6 +309,10 @@ describe('Vodevil Section of Tests: ', function () {
                 b = Vodevil.set(target);
 
             a.equal(b).should.equal( true );
+        });
+
+        it('equal is empty return false', function () {
+            Vodevil.set([1, 2]).equal( false );    
         });
     });
 });
