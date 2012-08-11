@@ -135,6 +135,13 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.clean( input, 'hello' ).should.have.length( 1 );
             Vodevil.clean( input, 'hello' ).toString().should.equal( output );
         });
+
+        it('clean set object', function () {
+            var input = Vodevil.set([null, undefined, 'hello', 'octocat']),
+                output = Vodevil.set(['hello', 'octocat']);
+
+            Vodevil.clean( input ).equal( output ).should.equal( true );
+        });
     });
 
     describe('Array checking type', function () {
@@ -149,6 +156,12 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.isArray([]).should.equal( true );    
             Vodevil.isArray([1, 2, 3, 4]).should.equal( true );    
             Vodevil.isArray(['just', 'another', 'array']).should.equal( true );    
+        });
+
+        it('if set object', function () {
+            var input = Vodevil.set([1, 2, 3]);
+
+            Vodevil.isArray( input ).should.equal( false );
         });
     });
 
@@ -177,10 +190,23 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.union( 'ab', ['c', 'd'] ).toString().should.equal( output );
         });
 
-        it('union array more string', function () {    
+        it('array more string', function () {    
             var output = ['a', 'b', 'c', 'd'].toString();
 
             Vodevil.union( ['a', 'b'], 'cd' ).toString().should.equal( output );
+        });
+
+        it('using set object', function () {
+            var input = [
+                    Vodevil.set(['a', 'b']),
+                    Vodevil.set(['c', 'd'])
+                ],
+                output = Vodevil.set(['a', 'b', 'c', 'd']);    
+
+            Vodevil.union( input[0], input[1] )
+                .equal( output )
+                .should
+                .equal( true );
         });
     });
 
@@ -211,6 +237,15 @@ describe('Vodevil Section of Tests: ', function () {
             var output = [6, 4, 2].toString();
 
             Vodevil.intersect( [1, 2, 3, 4, 5], function ( x ) { return x*2;}, '2::' ).toString().should.equal( output );    
+        });
+
+        it('intersect using set object', function () {
+            var input = Vodevil.set([1, 2, 3, 4]),
+                output = Vodevil.set([2, 4, 6, 8]);
+
+            Vodevil.intersect( input, function ( item ) {
+                return item * 2;
+            }).equal( output ).should.equal( true );
         });
     });
 
@@ -250,21 +285,14 @@ describe('Vodevil Section of Tests: ', function () {
 
             Vodevil.sail( [1, 2, 3, 4, 5], '2::' ).toString().should.equal( output );
         });
-    });
 
-    /*describe('Array multiplex', function () {
-        it('return default behavior', function () {
-            var output = [[1, 2, 3], [4, 5, 6], [7, 8, 9]].toString();    
+        it('working with set object', function () {
+            var input = Vodevil.set([1, 2, 3, 4, 5]),
+                output = Vodevil.set([3, 2, 1]);     
 
-            Vodevil.multiplex( Vodevil.range('1..9') ).toString().should.equal( output );
-        });    
-
-        it('return one by length gt in sequence', function () {
-            var output = JSON.stringify( [[1, 2, 3], [4, 5, 6], [7, 8, 9, 10]] );    
-
-            JSON.stringify( Vodevil.multiplex( Vodevil.range('1..10') ) ).should.equal( output );
+            Vodevil.sail( input, '2::' ).equal( output ).should.equal( true );
         });
-    });*/
+    });
 
     describe('Array flush', function () {
         it('all deep flush', function () {
@@ -272,6 +300,13 @@ describe('Vodevil Section of Tests: ', function () {
 
             Vodevil.flush( [1, [2, [3, [4, [5, [6]]]]]] ).toString().should.equal( output );
         });    
+
+        it('working set object', function () {
+            var input = Vodevil.set( [1, [2, [3]]] ),
+                output = Vodevil.set( ['1', '2', '3'] );
+
+            Vodevil.flush( input ).equal( output ).should.equal( true )
+        });
     });
 
     describe('Array isSet', function () {
@@ -299,6 +334,12 @@ describe('Vodevil Section of Tests: ', function () {
 
         it('empty parameter return false', function () {
             Vodevil.in().should.equal( false );    
+        });
+
+        it('Working with set object', function () {
+            var o = Vodevil.set([1, 2, 3]);
+            
+            Vodevil.in(o, 1).should.equal( true );    
         });
     });
 
