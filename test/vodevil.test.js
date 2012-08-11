@@ -12,45 +12,52 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.range('1..10').should.have.length( 10 );
         });
 
-        it(' - Simple number range, with separated arguments', function () {
+        it('simple number range, with separated arguments', function () {
             var output = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].toString();
 
             Vodevil.range(1, 10).toString().should.equal( output );
             Vodevil.range('1..10').should.have.length( 10 );
         });
 
-        it(' - Fail if not receive argument', function () {
+        it('fail if not receive argument', function () {
             Vodevil.range().should.have.length( 0 );    
         });
 
-        it(' - ( Note: using number ) If receive one argument, make array from 0 to n', function () {
+        it('( Note: using number ) If receive one argument, make array from 0 to n', function () {
             var output = [0, 1, 2, 3, 4].toString();
             
             Vodevil.range(4).toString().should.equal( output );
         });
 
-        it(' - ( Note: using string ) If receive one argument, make array from 0 to n', function () {
+        it('( Note: using string ) if receive one argument, make array from 0 to n', function () {
             var output = [0, 1, 2, 3, 4].toString();
             
             Vodevil.range('..4').toString().should.equal( output );
         });
 
-        it (' - ( Note: using string ) If receive one argument, make array from a to n', function () {
+        it ('( Note: using string ) if receive one argument, make array from a to n', function () {
             var output = ['a', 'b', 'c', 'd', 'e', 'f', 'g'].toString();    
 
             Vodevil.range('..g').toString().should.equal( output );
         });
+
+        it('setting a range using set object', function () {
+            var output = Vodevil.set([1, 2, 3]);
+
+            Vodevil.range('1..3', 'set').equal( output ).should.equal( true );
+            Vodevil.range(1, 3, 'set').equal( output ).should.equal( true );
+        });
     });    
 
     describe('Array letter ranges', function () {
-        it(' - Simple letter sequence', function () {
+        it('simple letter sequence', function () {
             var output = ['a', 'b', 'c'].toString();
 
             Vodevil.range('a..c').should.have.length( 3 );
             Vodevil.range('a..c').toString().should.equal( output );
         });
 
-        it(' - Lower and Upper case range', function () {
+        it('lower and upper case range', function () {
             var output = ['A', 'B', 'C'].toString();
 
             Vodevil.range('A..C').should.have.length( 3 );
@@ -63,39 +70,45 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.bang().should.have.length( 0 );    
         });    
 
-        it(' - String repetition', function () {
+        it('string repetition', function () {
             var output = [' ', ' ', ' '].toString();
 
             Vodevil.bang(' ', 3).should.have.length( 3 );    
             Vodevil.bang(' ', 3).toString().should.equal( output );
         });
 
-        it(' - Number repetition', function () {
+        it('number repetition', function () {
             var output = [1, 1, 1, 1].toString();
 
             Vodevil.bang( 1, 4 ).should.have.length( 4 );
             Vodevil.bang( 1, 4 ).toString().should.equal( output );
         });
 
-        it(' - Boolean repetition', function () {
+        it('boolean repetition', function () {
             var output = [true, true, true].toString();
 
             Vodevil.bang( true, 3 ).should.have.length( 3 );
             Vodevil.bang( true, 3 ).toString().should.equal( output );
         });
 
-        it(' - Undefined repetition', function () {
+        it('undefined repetition', function () {
             var output = [undefined, undefined, undefined].toString();
 
             Vodevil.bang( undefined, 3 ).should.have.length( 3 );
             Vodevil.bang( undefined, 3 ).toString().should.equal( output );
         });
 
-        it(' - Null repetition', function () {
+        it('null repetition', function () {
             var output = [null, null, null].toString();
 
             Vodevil.bang( null, 3 ).should.have.length( 3 );
             Vodevil.bang( null, 3 ).toString().should.equal( output );
+        });
+
+        it('return a bang set', function () {
+            var output = Vodevil.set( [null, null, null] );
+
+            Vodevil.bang( null, 3, 'set' ).equal( output ).should.equal( true );
         });
     });
 
@@ -104,7 +117,7 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.clean().should.have.length( 0 );
         });    
 
-        it(' - Clean the empty string [ default ]', function () {
+        it('clean the empty string [ default ]', function () {
             var input = ['', 'hello'],
                 output = ['hello'].toString();
 
@@ -112,7 +125,7 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.clean( input ).toString().should.equal( output );
         });
 
-        it(' - Clean the undefined [ default ]', function () {
+        it('clean the undefined [ default ]', function () {
             var input = [ undefined, 'hello' ],
                 output = ['hello'].toString();
 
@@ -120,7 +133,7 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.clean( input ).toString().should.equal( output );
         });
 
-        it(' - Clean the null [ default ]', function () {
+        it('clean the null [ default ]', function () {
             var input = [ null, 'hello' ],
                 output = ['hello'].toString();
 
@@ -128,7 +141,7 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.clean( input ).toString().should.equal( output );
         });
 
-        it(' - Clean the piece', function () {
+        it('clean the piece', function () {
             var input = [ null, 'hello', 'octocat' ],
                 output = ['octocat'].toString();    
             
