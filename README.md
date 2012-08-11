@@ -30,6 +30,8 @@ vodevil.range
 
 > vodevil.range( 'A..C' ) => ['A', 'B', 'C']
 
+> vodevil.range( 4, 'set' ) => {"objectId":"1iNFoLgCgzrg8muhL2s69A==","object":[0,1,2,3,4],"objectType":"set"}
+
 vodevil.bang
 ------------
 
@@ -41,6 +43,8 @@ vodevil.bang
 
 > vodevil.bang( undefined, 2 ) => [undefined, undefined]
 
+> vodevil.bang( 'doug', 2, 'set' ) => {"objectId":"HS8VtP8/BotEzWZ+/q+aHw==","object":["doug","doug"],"objectType":"set"} 
+
 vodevil.clean
 -------------
 
@@ -49,6 +53,8 @@ vodevil.clean
 > vodevil.clean( [null, 'doug', 'john'] ) => ['doug', 'john']
 
 > vodevil.clean( [ 100, 'doug', 'john'], 100 ) => ['doug', 'john']
+
+> vodevil.clean( vodevil.set([null, undefined, 'hello']) ) => {"objectId":"Hwv1A45hlRqVxKKp23xACg==","object":["hello"],"objectType":"set"}
 
 vodevil.isArray
 ---------------
@@ -68,6 +74,8 @@ vodevil.union
 
 > vodevil.union( ['a', 'b'], 'cd' ) => ['a', 'b', 'c', 'd']
 
+> vodevil.union( vodevil.set([1, 2]), vodevil.set([3, 4]) ) => {"objectId":"e9TGO6LNrbBg9XMOe/ZqMA==","object":[1,2,3,4],"objectType":"set"}
+
 vodevil.intersect
 -----------------
 
@@ -79,6 +87,8 @@ vodevil.intersect
 
 > vodevil.intersect( [1, 2, 3, 4, 5, 6], function ( x ) { return x*2 }, '2::' ) => [6, 4, 2]
 
+> vodevil.intersect(vodevil.set([1, 2, 3]), function ( x ) { return x*2; }, '0::') => {"objectId":"gJcLFZFsurEYyxd2AoHtmw==","object":[6,4,2],"objectType":"set"}
+
 vodevil.sail
 ------------
 
@@ -88,10 +98,14 @@ vodevil.sail
 
 > vodevil.sail( [1, 2, 3, 4, 5, 6], '2:3' ) => [3, 4]
 
+> vodevil.sail( vodevil.set([1, 2, 3, 4, 5]), '1::2' ) => {"objectId":"rbBriOAOruCuo6iA2wO2ow==","object":[4,3],"objectType":"set"}
+
 vodevil.flush
 -------------
 
 > vodevil.flush( [1, [2, [3, [4, [5, [6, [7, [8, [9, [0]]]]]]]]]] ) => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+
+> vodevil.flush( vodevil.set([1, [2, [3]]]) ) => {"objectId":"C8HY9145nmC14yQ9IrxghA==","object":["1","2","3"],"objectType":"set"}
 
 vodevil.in
 ----------
@@ -101,6 +115,8 @@ vodevil.in
 > vodevil.in([1, 2, 3, 4], 5) => false
 
 > vodevil.in() => false
+
+> vodevil.in( vodevil.set([1, 2, 3]), 3 ) => true
 
 vodevil.set
 -----------

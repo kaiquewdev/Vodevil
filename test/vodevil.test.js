@@ -47,6 +47,18 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.range('1..3', 'set').equal( output ).should.equal( true );
             Vodevil.range(1, 3, 'set').equal( output ).should.equal( true );
         });
+
+        it('receive one argument and output defined to set', function () {
+            var output = Vodevil.set([0, 1, 2, 3, 4]);
+
+            Vodevil.range( 4, 'set' ).equal( output ).should.equal( true );
+        });
+
+        it('receive one argument and output defined to set using string', function () {
+            var output = Vodevil.set([0, 1, 2, 3, 4]);
+
+            Vodevil.range('..4', 'set').equal( output ).should.equal( true );
+        });
     });    
 
     describe('Array letter ranges', function () {
