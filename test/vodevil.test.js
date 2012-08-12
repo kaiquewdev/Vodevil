@@ -393,4 +393,25 @@ describe('Vodevil Section of Tests: ', function () {
             Vodevil.set([1, 2]).equal( false );    
         });
     });
+
+    describe('Array append', function () {
+        it('a value', function () {
+            var input = Vodevil.set([1, 2, 3]),
+                value = 4,
+                output = Vodevil.set( [1, 2, 3, 4] );
+
+            input.append(value);
+
+            input.equal( output ).should.equal( true );
+        });    
+
+        it('list values', function () {
+            var input = Vodevil.set([1, 2]),
+                output = Vodevil.set([1, 2, 3 ,4]);
+
+            input.append( 3, 4 );
+
+            input.equal( output ).should.equal( true );
+        });
+    });
 });

@@ -129,6 +129,10 @@ vodevil.set
 
 > vodevil.set([1, 3, 4]).equal( vodevil.set([1, 2, 3]) ) => false
 
+> vodevil.set([1, 2]).append(3) => [3]
+
+> vodevil.set([1, 2]).append(3, 4, 5) => [3, 4, 5] 
+
 vodevil.isSet
 -------------
 
