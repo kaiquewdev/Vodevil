@@ -133,6 +133,12 @@ vodevil.set
 
 > vodevil.set([1, 2]).append(3, 4, 5) => [3, 4, 5] 
 
+> vodevil.set([1, 2, 3]).remove(1) => [1, 3]
+
+> vodevil.set([1, 2, 3]).shift() => [2, 3]
+
+> vodevil.set([1, 2, 3]).pop() => [1, 2]
+
 vodevil.isSet
 -------------
 

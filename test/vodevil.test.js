@@ -414,4 +414,39 @@ describe('Vodevil Section of Tests: ', function () {
             input.equal( output ).should.equal( true );
         });
     });
+
+    describe('Array remove', function () {
+        it('removing item', function () {
+            var input = Vodevil.set([1, 2, 3]),
+                output = Vodevil.set([1, 2]);
+
+            input.remove(2);
+
+            input.equal( output ).should.equal( true );
+        });   
+
+        it('fail because, not receive more than one argument', function () {
+            var input = Vodevil.set([1, 2, 3]);
+
+            input.remove(2, 3, 4).should.equal( false );
+        });
+
+        it('pop action', function () {
+            var input = Vodevil.set([1, 2, 3, 4]),
+                output = Vodevil.set([1, 2, 3]);    
+
+            input.pop();
+
+            input.equal( output ).should.equal( true );
+        });
+
+        it('shift action', function () {
+            var input = Vodevil.set([1, 2, 3]),
+                output = Vodevil.set([2, 3]);
+
+            input.shift();
+
+            input.equal( output ).should.equal( true );
+        });
+    });
 });
